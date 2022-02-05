@@ -1,0 +1,17 @@
+[
+    {
+        "body": "super cool!!!",
+        "post_id": 1,
+        "user_id": 2
+    },
+    {
+        "body": "the best",
+        "post_id": 2,
+        "user_id": 3
+    },
+    {
+        "body": "wowzers",
+        "post_id": 3,
+        "user_id": 1
+    }
+]
