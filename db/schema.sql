@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS all_db;
-CREATE DATABASE all_db;
-USE all_db
+DROP DATABASE IF EXISTS user_db;
+CREATE DATABASE user_db;
+USE user_db
