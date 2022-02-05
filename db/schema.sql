@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS all_db;
+CREATE DATABASE all_db;
+USE all_db
