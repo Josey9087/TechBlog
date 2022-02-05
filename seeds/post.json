@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Computer",
+        "body": "checkout my computer",
+        "user_id": 1
+    },
+    {
+        "title": "Computer dog",
+        "body": "checkout my dog who sits in front of my computer",
+        "user_id": 2
+    },
+    {
+        "title": "Code",
+        "body": "checkout my code",
+        "user_id": 3
+    }
+]
