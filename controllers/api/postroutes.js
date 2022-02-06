@@ -40,6 +40,19 @@ router.post('/posting', withAuth, async (req, res) => {
       }
 })
 
+router.put('/dashboard/:id', withAuth, async (req, res) => {
+    try {
+      const userData = await Post.update(req.body, {
+        where: {
+          id: req.params.id,
+        },
+      });
+      res.status(200).json(req.body);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 
 
 module.exports = router;
