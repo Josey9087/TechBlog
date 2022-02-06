@@ -78,16 +78,7 @@ router.get("/dashboard", withAuth, async (req,res) => {
   }
 })
 
-//checking if session is logged in
-router.get("/session", (req,res) => {
-  try {
-    res.json(req.session.user_id)
 
-  }catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-})
 
 
 
