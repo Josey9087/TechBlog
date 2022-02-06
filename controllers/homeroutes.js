@@ -25,7 +25,6 @@ router.get('/home', async (req, res) => {
 router.get("/home/:id", async (req, res) => {
   try {
     const idPostData = await Post.findByPk(req.params.id, {
-      attributes: { exclude: ['password'] },
       include: [
         { model: User, attributes: ["username"] },
         {
