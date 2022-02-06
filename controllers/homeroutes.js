@@ -22,7 +22,7 @@ router.get('/home', async (req, res) => {
   });
 
 // // this is for when you click on a post and it shows the comments on it and username of the poster and username of commenters
-router.get("/home/:id", async (req, res) => {
+router.get("/home/:id", withAuth, async (req, res) => {
   try {
     const idPostData = await Post.findByPk(req.params.id, {
       include: [
