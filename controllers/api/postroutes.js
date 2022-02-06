@@ -1,4 +1,5 @@
 const router = require('express').Router();
-const Post = require('../../models/Post');
+const { Post, Comment} = require('../../models');
+
 
 module.exports = router;
