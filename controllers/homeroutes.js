@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
-
+const withAuth = require('../utils/auth')
 // this will display all on home without showing comments but will show username of poster
 
-router.get('/', async (req, res) => {
-    // find all categories
+router.get('/home', async (req, res) => {
     try {
-      const category = await Post.findAll(
+      const Postdata = await Post.findAll(
         {
             include: [
               {
@@ -16,18 +15,18 @@ router.get('/', async (req, res) => {
             ],
           }
       );
-      res.json(category);
+      res.json(Postdata);
     } catch (err) {
       console.log("Wrong");
-      // be sure to include its associated Products
     }
   });
 
-// this is for when you click on a post and it shows the comments on it and username of the poster and username of commenters
-router.get("/:id", async (req, res) => {
+// // this is for when you click on a post and it shows the comments on it and username of the poster and username of commenters
+router.get("/home/:id", async (req, res) => {
   try {
-    const dbPostData = await Post.findByPk(req.params.id, {
+    const idPostData = await Post.findByPk(req.params.id, {
       include: [
+        { model: User, attributes: ["username"] },
         {
           model: Comment,
           attributes: ["body"],
@@ -36,11 +35,10 @@ router.get("/:id", async (req, res) => {
             attributes: ["username"],
           },
         },
-        { model: User, attributes: ["username"] },
       ],
     });
 
-    const post = dbPostData.get({ plain: true });
+    const post = idPostData.get({ plain: true });
     req.session.post_id = post.id
     res.json(post)
   } catch (err) {
@@ -48,6 +46,49 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// will display dashboard with only posts made by the user logged in
+router.get("/dashboard", withAuth, async (req,res) => {
+  try {
+    const idDashboard = await User.findByPk(req.session.user_id,
+    {
+      include: 
+      {
+        model: Post,
+        attributes: ["title", "body"],
+        include: {
+          model: User,
+          attributes: ["username"],
+          model: Comment,
+          attributes: ["body"],
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
+        },
+      },
+    });
+
+    const userpost = idDashboard.get({ plain: true });
+    res.json(userpost)
+
+  }catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
+//checking if session is logged in
+router.get("/session", (req,res) => {
+  try {
+    res.json(req.session.user_id)
+
+  }catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
 
 
 
