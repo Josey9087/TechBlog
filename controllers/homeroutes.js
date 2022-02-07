@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth')
+
+
 // this will display all on home without showing comments but will show username of poster
 
 router.get('/home', async (req, res) => {
@@ -17,10 +19,7 @@ router.get('/home', async (req, res) => {
       );
       const posts = Postdata.map(post => post.get({ plain: true }));
       res.render("display", {
-        posts,
-        username: req.session.username,
-      user_id: req.session.user_id,
-      loggedIn: req.session.loggedIn,
+        posts
       });
     } catch (err) {
       console.log("Wrong");
@@ -83,8 +82,6 @@ router.get("/dashboard", withAuth, async (req,res) => {
     res.status(500).json(err);
   }
 })
-
-
 
 
 
