@@ -57,7 +57,9 @@ router.get("/dashboard", withAuth, async (req,res) => {
     });
 
     const userpost = idDashboard.get({ plain: true });
-    res.render("dashboard",{...userpost})
+    res.render("dashboard",{
+      logged_in: req.session.logged_in,
+      ...userpost,})
 
   }catch (err) {
     console.log(err);
