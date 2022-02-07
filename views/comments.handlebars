@@ -1,0 +1,34 @@
+<div class="">
+
+<div class="">
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}</h5>
+        <p>User: {{post.user.username}}</p>
+    <p class="card-text">{{post.body}}</p>
+  </div>
+</div>
+
+{{#each post.comments as |comment|}}
+<div class="">
+  <div class="">
+    <h5 class="">{{user.username}}</h5>
+    <p class="">{{comment.body}}</p>
+  </div>
+</div>
+{{/each}}
+
+
+<div class="">
+  <div class="">
+    <h3>Add a New Comment:</h3>
+
+    <form class="form new-comment-form">
+      <div class="form-group">
+        <label for="comment-content">Write a Comment! :</label>
+        <textarea class="form-input" id="comment-content" name="comment-content"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>

@@ -84,7 +84,7 @@ router.get("/:id", withAuth, async (req, res) => {
 
     const post = idPostData.get({ plain: true });
     req.session.post_id = post.id
-    res.json(post)
+    res.render("comments",{post})
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
