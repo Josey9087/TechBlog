@@ -28,8 +28,21 @@ router.get('/home', async (req, res) => {
   });
 
 router.get("/login", async (req, res) =>{
+  if (req.session.logged_in) {
+    res.redirect("/dashboard");
+    return;
+  }
   try {
-    res.render("login")
+    res.render("login",{
+      logged_in: req.session.logged_in})
+  } catch (err) {
+    console.log("Wrong");
+}})
+
+router.get("/signup", async (req, res) =>{
+  try {
+    res.render("signup",{
+      logged_in: req.session.logged_in})
   } catch (err) {
     console.log("Wrong");
 }})
