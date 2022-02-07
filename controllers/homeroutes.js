@@ -15,7 +15,13 @@ router.get('/home', async (req, res) => {
             ],
           }
       );
-      res.json(Postdata);
+      const posts = Postdata.map(post => post.get({ plain: true }));
+      res.render("display", {
+        posts,
+        username: req.session.username,
+      user_id: req.session.user_id,
+      loggedIn: req.session.loggedIn,
+      });
     } catch (err) {
       console.log("Wrong");
     }
