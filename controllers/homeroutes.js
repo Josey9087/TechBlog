@@ -19,38 +19,20 @@ router.get('/home', async (req, res) => {
       );
       const posts = Postdata.map(post => post.get({ plain: true }));
       res.render("display", {
-        posts
+        posts,
+        logged_in: true
       });
     } catch (err) {
       console.log("Wrong");
     }
   });
 
-// // this is for when you click on a post and it shows the comments on it and username of the poster and username of commenters
-router.get("/home/:id", withAuth, async (req, res) => {
+router.get("/login", async (req, res) =>{
   try {
-    const idPostData = await Post.findByPk(req.params.id, {
-      include: [
-        { model: User, attributes: ["username"] },
-        {
-          model: Comment,
-          attributes: ["body"],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
-        },
-      ],
-    });
-
-    const post = idPostData.get({ plain: true });
-    req.session.post_id = post.id
-    res.json(post)
+    res.render("login")
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+    console.log("Wrong");
+}})
 
 // will display dashboard with only posts made by the user logged in
 router.get("/dashboard", withAuth, async (req,res) => {
@@ -82,6 +64,34 @@ router.get("/dashboard", withAuth, async (req,res) => {
     res.status(500).json(err);
   }
 })
+
+// // this is for when you click on a post and it shows the comments on it and username of the poster and username of commenters
+router.get("/:id", withAuth, async (req, res) => {
+  try {
+    const idPostData = await Post.findByPk(req.params.id, {
+      include: [
+        { model: User, attributes: ["username"] },
+        {
+          model: Comment,
+          attributes: ["body"],
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
+        },
+      ],
+    });
+
+    const post = idPostData.get({ plain: true });
+    req.session.post_id = post.id
+    res.json(post)
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+
 
 
 
