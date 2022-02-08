@@ -2,17 +2,6 @@ const router = require('express').Router();
 const { Post, Comment, User} = require('../../models');
 const withAuth = require('../../utils/auth')
 
-router.get('/dashboard/:id', withAuth, async (req, res) =>{
-    try {
-        const usersPost = await Post.findByPk(req.params.id );
-        const post = usersPost.get({ plain: true });
-        req.session.post_id = post.id;
-        res.json(post);
-      } catch (err) {
-        res.status(400).json("its something else");
-      }
-})
-
 router.post('/comment', withAuth, async (req, res) => {
     try {
 
@@ -40,20 +29,6 @@ router.post('/posting', withAuth, async (req, res) => {
       }
 })
 
-router.put('/dashboard/:id', withAuth, async (req, res) => {
-    try {
-      const userData = await Post.update({
-        title: req.body.title,
-        body: req.body.body}, {
-        where: {
-          id: req.params.id,
-        },
-      });
-      res.status(200).json(req.body);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
 
   router.delete('/delete/:id', async (req, res) => {
     try {
@@ -73,6 +48,19 @@ router.put('/dashboard/:id', withAuth, async (req, res) => {
     }
   });
 
-
+  router.put('/dashboard/:id', withAuth, async (req, res) => {
+    try {
+      const userData = await Post.update({
+        title: req.body.title,
+        body: req.body.body}, {
+        where: {
+          id: req.params.id,
+        },
+      });
+      res.status(200).json(req.body);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 module.exports = router;

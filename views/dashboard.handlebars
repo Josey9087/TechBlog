@@ -23,23 +23,24 @@
   <h3>Your posts: </h3>
   {{#each posts as |post|}}
 
-  <form data-update={{post.id}} class="form update">
-    <div class="form-group">
-      <label for="name-post">Post:</label>
-      <input value="{{post.title}}" class="form-input" type="text" id="post-update-title" />
-    </div>
-    <div class="form-group">
-      <label for="post-content">Content:</label>
-      <input value="{{post.body}}" class="form-input" type="text" id="post-update-body" />
-    </div>
-    <div class="form-group">
-      <button data-update={{post.id}} class="btn" type="submit">Update</button>
-    </div>
-  </form>
+  <form class="form update">
+      <div class="form-group">
+        <label for="name-post">Post:</label>
+        <input value="{{post.title}}" class="form-input update-title" type="text" id="update-title" />
+      </div>
+      <div class="form-group">
+        <label for="post-content">Content:</label>
+        <input value= "{{post.body}}" class="form-input update-body" type="text" id="update-body" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary1" type="submit">Update</button>
+      </div>
+    </form>
   <button id="delete" data-delete={{post.id}} class="btn" >Delete</button>
   {{/each}}
 </div>
 {{/if}}
 </div>
+
 
 <script src="/js/posting.js"></script>
