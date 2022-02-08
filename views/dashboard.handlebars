@@ -2,14 +2,14 @@
   <div class="col-md-6">
     <h2>Welcome to your dashboard {{username}}</h2>
 
-    <form class="form signup">
+    <form class="form post">
       <div class="form-group">
         <label for="name-post">Post:</label>
-        <input class="form-input" type="text" id="new-post-name" />
+        <input class="form-input" type="text" id="post-title" />
       </div>
       <div class="form-group">
         <label for="post-content">Content:</label>
-        <input class="form-input" type="text" id="new-post-body" />
+        <input class="form-input" type="text" id="post-body" />
       </div>
       <div class="form-group">
         <button class="btn btn-primary1" type="submit">Create</button>
@@ -18,20 +18,28 @@
   </div>
 </div>
 
-  {{#if posts.length}}
-  <div class="">
-    <h3>Your posts: </h3>
-    {{#each posts as |post|}}
-    <div class="">
-      <div class="">
-        <h4><a href="/{{post.id}}">{{post.title}}</a></h4>
-      </div>
-      <div class="">
-        <button class="">UPDATE</button>
-        <button class="">DELETE</button>
-      </div>
+{{#if posts.length}}
+<div class="">
+  <h3>Your posts: </h3>
+  {{#each posts as |post|}}
+
+  <form data-update={{post.id}} class="form update">
+    <div class="form-group">
+      <label for="name-post">Post:</label>
+      <input value="{{post.title}}" class="form-input" type="text" id="post-update-title" />
     </div>
-    {{/each}}
-  </div>
-  {{/if}}
+    <div class="form-group">
+      <label for="post-content">Content:</label>
+      <input value="{{post.body}}" class="form-input" type="text" id="post-update-body" />
+    </div>
+    <div class="form-group">
+      <button data-update={{post.id}} class="btn" type="submit">Update</button>
+    </div>
+  </form>
+  <button id="delete" data-delete={{post.id}} class="btn" >Delete</button>
+  {{/each}}
 </div>
+{{/if}}
+</div>
+
+<script src="/js/posting.js"></script>

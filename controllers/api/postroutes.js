@@ -42,7 +42,9 @@ router.post('/posting', withAuth, async (req, res) => {
 
 router.put('/dashboard/:id', withAuth, async (req, res) => {
     try {
-      const userData = await Post.update(req.body, {
+      const userData = await Post.update({
+        title: req.body.title,
+        body: req.body.body}, {
         where: {
           id: req.params.id,
         },
