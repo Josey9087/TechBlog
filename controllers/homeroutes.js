@@ -55,7 +55,7 @@ router.get("/dashboard", withAuth, async (req,res) => {
         attributes: { exclude: ['password'] },
         include: {
         model: Post,
-        attributes: ["title", "body", "id"],
+        attributes: ["title", "body", "id", "createdAt"],
         include: {
           model: User,
           attributes: ["username"],
@@ -105,6 +105,7 @@ router.get("/:id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 
 
