@@ -23,15 +23,15 @@
   <h3>Your posts: </h3>
   {{#each posts as |post|}}
 
-  <div class="">
-    <div class="">
-      <h5 class="" ><a href="/api/post/dash/{{id}}">{{post.title}}</a></h5>
+  <div class="card text-black w-50 mx-auto border-secondary m-5">
+    <div class="card-body">
+      <h5 class="card-title"><a href="/api/post/dash/{{id}}">{{post.title}}</a></h5>
       <p>Created At: {{format_date post.createdAt}}</p>
       <p class="">{{post.body}}</p>
       <a href="/{{id}}">See Comments</a>
+      <button data-delete={{post.id}} class="delete btn">Delete</button>
     </div>
   </div>
-  <button id="delete" data-delete={{post.id}} class="btn" >Delete</button>
   {{/each}}
 </div>
 {{/if}}

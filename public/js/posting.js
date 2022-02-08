@@ -14,7 +14,7 @@ postFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('http://localhost:3001/home');
+        document.location.replace('http://localhost:3001/dashboard');
       } else {
         alert(response.statusText);
       }
@@ -36,7 +36,7 @@ deleteFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('http://localhost:3001/home');
+        document.location.replace('http://localhost:3001/dashboard');
       } else {
         alert(response.statusText);
       
@@ -47,5 +47,5 @@ deleteFormHandler = async (event) => {
     .querySelector('.post')
     .addEventListener('submit', postFormHandler);
 
-document.querySelector('#delete').addEventListener('click', deleteFormHandler)
+document.querySelector('.delete').addEventListener('click', deleteFormHandler)
 
