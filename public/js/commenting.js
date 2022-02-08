@@ -6,14 +6,14 @@ commentFormHandler = async (event) => {
   
     if (body) {
       // Send a POST request to the API endpoint
-      const response = await fetch('http://localhost:3001/api/post/comment', {
+      const response = await fetch('/api/post/comment', {
         method: 'POST',
         body: JSON.stringify({ body }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        document.location.replace('http://localhost:3001/home');
+        document.location.replace('/home');
       } else {
         alert(response.statusText);
       }

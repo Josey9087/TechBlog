@@ -7,14 +7,14 @@ postFormHandler = async (event) => {
   
     if (title && body) {
       // Send a POST request to the API endpoint
-      const response = await fetch('http://localhost:3001/api/post/posting', {
+      const response = await fetch('/api/post/posting', {
         method: 'POST',
         body: JSON.stringify({ title, body }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        document.location.replace('http://localhost:3001/dashboard');
+        document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
       }
@@ -30,13 +30,13 @@ deleteFormHandler = async (event) => {
   
 
       // Send a POST request to the API endpoint
-      const response = await fetch(`http://localhost:3001/api/post/delete/${id}`, {
+      const response = await fetch(`/api/post/delete/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        document.location.replace('http://localhost:3001/dashboard');
+        document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
       

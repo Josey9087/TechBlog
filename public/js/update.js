@@ -9,7 +9,7 @@ const updateFormHandler = async (event) => {
                     console.log(JSON.stringify(userdata))
                     console.log(userdata)
     try {
-        fetch(`http://localhost:3001/api/post/dashboard/${id}`, {
+        fetch(`/api/post/dashboard/${id}`, {
   method: 'PUT', 
   headers: {
     'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ const updateFormHandler = async (event) => {
 .then(response => response.json())
 .then(data => {
   console.log('Success:', data);
-  window.location.href = `/home`
+  window.location.href = `/dashboard`
 })
 .catch((error) => {
   console.error('Error:', error);

@@ -7,14 +7,14 @@ loginFormHandler = async (event) => {
   
     if (username && password) {
       // Send a POST request to the API endpoint
-      const response = await fetch('http://localhost:3001/api/user/login', {
+      const response = await fetch('/api/user/login', {
         method: 'POST',
         body: JSON.stringify({ username, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        document.location.replace('http://localhost:3001/home');
+        document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
       }
