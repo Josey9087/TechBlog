@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth')
 
 // this will display all on home without showing comments but will show username of poster
 
-router.get('/home', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
       const Postdata = await Post.findAll(
         {
